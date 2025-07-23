@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { X, Menu } from "lucide-react";
 import toast from "react-hot-toast";
 
-const API_KEY = '';
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 export default function ChatWithGrok() {
   const [messages, setMessages] = useState([]);
@@ -26,12 +26,12 @@ export default function ChatWithGrok() {
 
   try {
     const response = await fetch(
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDSP4oo8164ZdAfB0K4LeESFbJb6ntbxd4",
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
   {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-goog-api-key": "AIzaSyDSP4oo8164ZdAfB0K4LeESFbJb6ntbxd4"
+      "X-goog-api-key": API_KEY
     },
     body: JSON.stringify({
       contents: [
